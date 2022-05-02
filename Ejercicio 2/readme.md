@@ -1,4 +1,4 @@
-# Ejercicio Nº1 - Preguntas
+# Ejercicio Nº2 - Preguntas
 
 ### **1) En los test 01 y 02 hay código repetido. Cuando lo extrajeron crearon algo nuevo. Eso es algo que estaba en la realidad y no estaba representado en nuestro código, por eso teníamos código repetido. ¿Cuál es esa entidad de la realidad que crearon?**
 
