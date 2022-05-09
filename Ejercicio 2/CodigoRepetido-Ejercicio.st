@@ -223,33 +223,6 @@ numberOfSuspendedCustomers
 removeCustomerNamed: aName 
 
 	^active remove: aName ifAbsent: [suspended remove: aName ifAbsent: [NotFound signal]].
-	
-	
-	
-	
-	
-	
-	"suspended remove: aName ifAbsent: self.
-
-	1 to: active size do: 
-	[ :index |
-		aName = (active at: index)
-			ifTrue: [
-				active removeAt: index.
-				^ aName 
-			] 
-	].
-
-	1 to: suspended size do: 	
-	[ :index |
-		aName = (suspended at: index)
-			ifTrue: [
-				suspended removeAt: index.
-				^ aName 
-			] 
-	].
-
-	^ NotFound signal."
 ! !
 
 !CustomerBook methodsFor: 'customer management' stamp: 'HernanWilkinson 7/6/2011 17:52'!
