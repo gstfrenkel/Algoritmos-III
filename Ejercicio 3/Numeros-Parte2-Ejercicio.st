@@ -320,11 +320,6 @@ negated
 	^self * (Entero with: -1)! !
 
 
-!Numero methodsFor: 'testing' stamp: 'NR 9/23/2018 23:36:49'!
-isNegative
-
-	self subclassResponsibility ! !
-
 !Numero methodsFor: 'testing' stamp: 'HernanWilkinson 5/7/2016 22:49'!
 isOne
 
@@ -335,11 +330,6 @@ isZero
 
 	self subclassResponsibility ! !
 
-
-!Numero methodsFor: 'private' stamp: 'HernanWilkinson 5/7/2016 22:48'!
-invalidNumberType
-
-	self error: self class invalidNumberTypeErrorDescription! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -545,7 +535,6 @@ with: aValue
 	
 	^subClassFound new initializeWith: aValue.
 	! !
-
 
 
 !classDefinition: #Cero category: 'Numeros-Parte2-Ejercicio'!
