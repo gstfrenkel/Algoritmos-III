@@ -423,6 +423,12 @@ initializeFor: aValue
 
 	value _ aValue ! !
 
+
+!AccountTransaction methodsFor: 'value - private' stamp: 'jc 6/9/2022 14:28:56'!
+transactionValue
+
+	self subclassResponsibility! !
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'AccountTransaction class' category: 'ServiciosFinancieros-Ejercicio'!
