@@ -915,7 +915,7 @@ visitTransactionsFor: aReportToBeMade
 Account class
 	instanceVariableNames: ''!
 
-!Account class methodsFor: 'instancing' stamp: 'jc 6/16/2022 18:07:29'!
+!Account class methodsFor: 'instance creation' stamp: 'jc 6/16/2022 18:07:29'!
 named: anAccountName
 
 	^self new named: anAccountName ! !
@@ -1060,14 +1060,14 @@ signalCanNotAddAccount
 Portfolio class
 	instanceVariableNames: ''!
 
-!Portfolio class methodsFor: 'instancing' stamp: 'HAW 5/25/2019 11:18:21'!
+!Portfolio class methodsFor: 'instance creation' stamp: 'HAW 5/25/2019 11:18:21'!
 with: anAccount
 
 	^self new 
 		add: anAccount;
 		yourself! !
 
-!Portfolio class methodsFor: 'instancing' stamp: 'HAW 5/25/2019 11:23:59'!
+!Portfolio class methodsFor: 'instance creation' stamp: 'HAW 5/25/2019 11:23:59'!
 with: anAccount with: anotherAccount
 
 	^self new 
@@ -1548,11 +1548,16 @@ endReportOfPortfolio: aPortfolio
 
 	self subclassResponsibility ! !
 
-!AccountTreeReport methodsFor: 'reporting - private' stamp: 'jc 6/16/2022 17:37:33'!
+!AccountTreeReport methodsFor: 'reporting - private' stamp: 'jc 6/16/2022 18:30:00'!
 treeReportForAPortfolio: anAccount
 
-	self subclassResponsibility 
-	! !
+	| indentations  |
+	
+	indentations _ self indentations.
+
+	tree add: indentations,anAccount name.
+	
+	self increaseIndentation ! !
 
 !AccountTreeReport methodsFor: 'reporting - private' stamp: 'jc 6/16/2022 17:37:44'!
 treeReportForAReceptiveAccount: aReceptiveAccount
@@ -1560,10 +1565,11 @@ treeReportForAReceptiveAccount: aReceptiveAccount
 	self subclassResponsibility ! !
 
 
-!AccountTreeReport methodsFor: 'initialization' stamp: 'jc 6/16/2022 17:37:11'!
-initialize
+!AccountTreeReport methodsFor: 'initialization' stamp: 'jc 6/16/2022 18:29:25'!
+initialize 
 
-	self subclassResponsibility ! !
+	tree _ OrderedCollection new.
+	tabs _ 0! !
 
 
 !AccountTreeReport methodsFor: 'main protocol' stamp: 'jc 6/16/2022 18:12:10'!
@@ -1623,17 +1629,6 @@ endReportOfPortfolio: aPortfolio
 
 	self decreaseIndentation ! !
 
-!PortfolioDetailedTree methodsFor: 'reporting - private' stamp: 'jc 6/16/2022 17:41:28'!
-treeReportForAPortfolio: anAccount
-
-	| indentations |
-	
-	indentations _ self indentations.
-
-	tree add: indentations,anAccount name.
-	
-	self increaseIndentation.! !
-
 !PortfolioDetailedTree methodsFor: 'reporting - private' stamp: 'jc 6/16/2022 17:42:01'!
 treeReportForAReceptiveAccount: aReceptiveAccount
 
@@ -1652,13 +1647,6 @@ treeReportForAReceptiveAccount: aReceptiveAccount
 		
 	! !
 
-
-!PortfolioDetailedTree methodsFor: 'initialization' stamp: 'jc 6/16/2022 16:54:22'!
-initialize 
-
-	tree _ OrderedCollection new.
-	tabs _ 0! !
-
 
 !classDefinition: #PortfolioTree category: 'ServiciosFinancieros-Solucion'!
 AccountTreeReport subclass: #PortfolioTree
@@ -1672,18 +1660,6 @@ endReportOfPortfolio: aPortfolio
 
 	self decreaseIndentation ! !
 
-!PortfolioTree methodsFor: 'reporting - private' stamp: 'jc 6/16/2022 17:42:29'!
-treeReportForAPortfolio: anAccount
-
-	| indentations  |
-	
-	indentations _ self indentations.
-
-	tree add: indentations,anAccount name.
-	
-	self increaseIndentation 
-	! !
-
 !PortfolioTree methodsFor: 'reporting - private' stamp: 'jc 6/16/2022 17:42:37'!
 treeReportForAReceptiveAccount: aReceptiveAccount
 
@@ -1693,13 +1669,6 @@ treeReportForAReceptiveAccount: aReceptiveAccount
 
 	tree add: indentations,aReceptiveAccount name.
 	! !
-
-
-!PortfolioTree methodsFor: 'initialization' stamp: 'jc 6/16/2022 16:16:26'!
-initialize 
-
-	tree _ OrderedCollection new.
-	tabs _ 0! !
 
 
 !classDefinition: #Transfer category: 'ServiciosFinancieros-Solucion'!
